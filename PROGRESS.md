@@ -1,6 +1,6 @@
 # Project Progress
 
-Status: IN PROGRESS
+Status: COMPLETE
 
 ## Current Objective
 Finish and publish Codex Wisp: preserve approved idle character/UI, add only typing, microphone and music activity states, transient hover/click usage panel, complete token analytics, Windows executable and GitHub release.
@@ -20,6 +20,8 @@ Finish and publish Codex Wisp: preserve approved idle character/UI, add only typ
 - Final README, token-accounting reference, artwork notice, MIT code license, third-party notices and reproducible PyInstaller build script added.
 - Visual QA found and fixed a white Qt scroll viewport that made the main panel hard to read.
 - Frozen startup failure diagnosed to Codex runtime PATH contaminating PyInstaller dependency discovery with a versioned ICU 78 DLL. The build now filters that path and standardizes the compatible PySide VC runtime.
+- Source committed and pushed to the existing private `Wind-Fzx/codex-widget` repository. GitHub Release `v1.0.0` published with the verified Windows x64 zip.
+- `D:\Desktop\Codex Wisp.lnk` created for the corrected frozen executable; the final app is running and responding.
 
 ## Files Modified
 AGENTS.md, PROGRESS.md, DESIGN.md, docs/implementation-plan.md, usage.py, analytics.py, analytics_view.py, desktop.py, widget.py, pet.py, activity.py, assets/, tests/, tools/, requirements*.txt, .gitignore.
@@ -34,10 +36,9 @@ AGENTS.md, PROGRESS.md, DESIGN.md, docs/implementation-plan.md, usage.py, analyt
 - Reference: https://github.com/ccusage/ccusage (MIT; active). Studied cumulative/last-request parsing and cache subset normalization; no code copied, kept Python architecture. https://store.steampowered.com/app/3419430/Bongo_Cat/ inspires temporary key-reactive posing only, not replacement character art.
 
 ## Current State
-Source app and enhanced analytics run; all 17 tests pass. A clean Windows onedir build and zip succeed, and the corrected frozen executable follows the active task with live quota and activity-detector data. No new commit/release yet. Staging review and GitHub delivery are the active stage.
+Requested v1.0.0 scope is finished and verified. Source is on private GitHub, the release asset is uploaded with a matching SHA-256 digest, the desktop shortcut exists, and the final frozen app is running.
 
 ## Known Issues
-- No GitHub commit/release or desktop shortcut yet.
 - Media playback detection depends on Windows System Media Transport Controls, so players that do not integrate with Windows media controls cannot be detected reliably.
 - Microphone detection reports active Windows capture sessions; the app never opens or records the microphone.
 - The release executable is not code-signed; Windows may show its normal unknown-publisher/SmartScreen prompt on another machine.
@@ -53,11 +54,11 @@ Source app and enhanced analytics run; all 17 tests pass. A clean Windows onedir
 - Final frozen smoke follows `开发实时用量悬浮 Widget`, reports live quota, `keyboard_hook_error: null`, and valid microphone/music booleans. A synthetic F24 key event triggered the real low-level hook and selected `typing` without capturing text.
 - Final archive: 53,316,751 bytes; SHA-256 `339598CC41F9D15A7B778A0C2CF6B73513CB0BF6C4918B7704216B7FCCE4E26E`.
 - Source/private-data scan found no credential signatures or personal absolute paths; `.private/`, build output, dist output, virtualenv and generated spec are ignored.
+- Commit `ab843dd2082ab5848ded03a210cd2ca7e04ac838` pushed to `origin/main`; GitHub Release `v1.0.0` is published, non-draft and non-prerelease. Uploaded asset size/digest match the local archive.
+- Desktop shortcut target verified; final `CodexWisp.exe` process is running and responsive.
 
 ## Remaining Work
-1. Stage only reviewed source/assets/docs, run staged diff/secret checks, commit and push main.
-2. Publish authorized private GitHub release v1.0.0 with the verified Windows zip.
-3. Create a desktop shortcut, launch the finished app, verify process is running, then mark this file COMPLETE and push the final state.
+None for the requested v1.0.0 scope.
 
 ## Next Step
-Stage the reviewed source set, inspect the cached diff, commit and push main, then publish release v1.0.0.
+Wait for user feedback on the running desktop pet; future behavior states remain intentionally out of scope until requested.
