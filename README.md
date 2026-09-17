@@ -36,7 +36,7 @@ petoken 是一个 Windows 桌宠：它自动跟随当前打开的 Codex 任务�
 
 缓存输入已包含在 input 中，推理 token 已包含在 output 中，因此两者不会再次加入官方总量。字段缺失或覆盖不完整时显示 `N/A` 和已知小计，不用假零补齐。完整公式和本机实际字段见 [Token accounting](docs/TOKEN_ACCOUNTING.md)。
 
-成本是按已记录模型、服务档位、长上下文规则和加拿大央行 USD/CAD 汇率计算的 API 等价估算，不是 ChatGPT/Codex 订阅账单。未知模型价格或未知 cache-write 拆分会明确标成部分估算。
+成本是按已记录模型、服务档位、长上下文规则和加拿大央行 USD/CAD 汇率计算的 API 等价估算，不是 ChatGPT/Codex 订阅账单。未知模型价格或未知 cache-write 拆分会明确标成部分估算
 
 ## 数据与隐私
 
