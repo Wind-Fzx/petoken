@@ -1,6 +1,6 @@
-# Codex Wisp
+# petoken
 
-Codex Wisp 是一个 Windows 桌宠：它自动跟随当前打开的 Codex 任务，并在需要时显示精确的本地 token 用量、5 小时/每周额度、重置倒计时和 CAD API 等价成本估算。平时只显示已批准的角色；鼠标停留或单击角色时，用量面板才会出现在旁边。
+petoken 是一个 Windows 桌宠：它自动跟随当前打开的 Codex 任务，并在需要时显示精确的本地 token 用量、5 小时/每周额度、重置倒计时和 CAD API 等价成本估算。平时只显示已批准的角色；鼠标停留或单击角色时，用量面板才会出现在旁边。
 
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB) ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D4) ![License](https://img.shields.io/badge/code-MIT-91E4F2)
 
@@ -40,7 +40,7 @@ Codex Wisp 是一个 Windows 桌宠：它自动跟随当前打开的 Codex 任�
 
 ## 数据与隐私
 
-Codex Wisp 只读取：
+petoken 只读取：
 
 - Codex 的只读 SQLite 任务元数据和 JSONL 中的数字用量事件
 - Codex 自己的只读 `account/rateLimits/read` 结果
