@@ -1,0 +1,47 @@
+"""Local visual QA helper. Writes only synthetic screenshots to an ignored path."""
+import sys
+from pathlib import Path
+
+from PySide6.QtWidgets import QApplication
+
+sys.path.insert(0, str(Path(__file__).parents[1]))
+from analytics import aggregate, normalize_usage
+from pet import DesktopPet
+from widget import Panel
+
+
+def main(output):
+    app = QApplication.instance() or QApplication([])
+    panel = Panel(live=False)
+    panel.pet = DesktopPet(panel)
+    tokens = normalize_usage(dict(input_tokens=120000, cached_input_tokens=90000,
+        cache_write_input_tokens=0, output_tokens=18000,
+        reasoning_output_tokens=7000, total_tokens=138000))
+    analysis = aggregate([dict(session='visual-fixture', model='gpt-6-astra',
+        timestamp='2026-09-16T12:00:00Z', event_id='visual', tokens=tokens)])
+    panel.render(dict(title='开发实时用量悬浮 widget', project='Codex Wisp',
+        model='gpt-6-astra', effort='high', mode='follow', scope='task',
+        tokens=tokens, available=True, analytics=analysis, usd=2.19,
+        context=42, context_tokens=84000, context_window=200000,
+        raw_total=tokens, raw_last=tokens, notes=[], unknown=[], partial=False,
+        count=1, session_names={'visual-fixture':'Visual fixture'}))
+    output.mkdir(parents=True, exist_ok=True)
+    panel.pet.activity_timer.stop()
+    panel.pet.motion = False
+    panel.pet.show()
+    for state in ('idle', 'typing', 'microphone', 'music'):
+        panel.pet.preview_state = state
+        panel.pet.update_activity()
+        app.processEvents()
+        panel.pet.grab().save(str(output / f'pet-{state}.png'))
+    panel.show()
+    panel.open_analytics()
+    app.processEvents()
+    panel.grab().save(str(output / 'panel.png'))
+    panel.analytics_window.grab().save(str(output / 'analytics.png'))
+    panel.shutdown()
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main(Path(sys.argv[1] if len(sys.argv) > 1 else '.private/states')))
